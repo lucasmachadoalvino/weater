@@ -1,17 +1,40 @@
 import React from 'react';
-import {Container, Content, Title} from './styles';
+import {Button, Container, Content, Title} from './styles';
 
+import {View} from 'react-native';
 import LocationSvg from '../../assets/icons/location.svg';
 import ReloadSvg from '../../assets/icons/reload.svg';
+import {HeaderLoad} from './load';
 
-export function Header() {
+export interface HeaderProps {
+  city?: string;
+  onReloadPress: () => void;
+  isLoading: boolean;
+}
+
+export function Header({city, onReloadPress, isLoading}: HeaderProps) {
+  if (isLoading) {
+    return (
+      <View testID="teste">
+        <HeaderLoad />
+      </View>
+    );
+  }
+
   return (
-    <Container>
+    <Container testID="Header">
       <Content>
-        <LocationSvg width="20" height="20" fill={'white'} />
-        <Title>Blumenau</Title>
+        <LocationSvg
+          width="20"
+          height="20"
+          fill={'white'}
+          testID={'LocationSvg'}
+        />
+        <Title>{city}</Title>
       </Content>
-      <ReloadSvg width="20" height="20" fill={'white'} />
+      <Button onPress={onReloadPress}>
+        <ReloadSvg width="20" height="20" fill={'white'} testID={'ReloadSvg'} />
+      </Button>
     </Container>
   );
 }

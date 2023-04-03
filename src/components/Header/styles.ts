@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex-direction: row;
-  padding: 16px;
+  padding: ${({theme}) => theme.spacing.mediumSpacing}px;
   justify-content: space-between;
 `;
 
@@ -12,8 +12,12 @@ export const Content = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-weight: 500;
-  font-size: 19px;
-  margin-left: 8px;
-  color: white;
+  font-weight: ${({theme}) => theme.fontWeights.bold};
+  font-size: ${({theme}) => theme.fontSizes.largeFont}px;
+  margin-left: ${({theme}) => theme.spacing.smallSpacing}px;
+  color: ${({theme}) => theme.colors.text};
 `;
+
+export const Button = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})``;
